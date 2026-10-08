@@ -1,0 +1,4 @@
+.dev.vars
+.local/
+node_modules/
+outputs/
