@@ -1,13 +1,24 @@
 import fs from 'node:fs/promises';
 import vm from 'node:vm';
 import { validateBackup } from '../public/assets/progress-model.js';
+import { mergeCatalog } from '../public/assets/catalog.js';
 const input = process.argv[2];
 if (!input) throw new Error('用法：node scripts/apply-progress.mjs <看板导出的进度备份.json>');
 const context = {window:{}};
 vm.runInNewContext(await fs.readFile(new URL('../public/assets/accounts.js',import.meta.url),'utf8'),context);
+vm.runInNewContext(await fs.readFile(new URL('../public/assets/platform-data.js',import.meta.url),'utf8'),context);
 const payload = JSON.parse(await fs.readFile(input,'utf8'));
-const records = validateBackup(payload,context.window.XHS_ACCOUNTS);
-const output = {schema:'jev-xhs-progress',version:1,exportedAt:new Date().toISOString(),records};
+const existingContext={window:{}};
+vm.runInNewContext(await fs.readFile(new URL('../public/assets/progress.js',import.meta.url),'utf8'),existingContext);
+const existing=existingContext.window.XHS_PUBLISHED_PROGRESS;
+const accounts=[...new Map([...(existing.accounts??[]),...(payload.accounts??[])].map(r=>[r.order,r])).values()];
+const catalog=mergeCatalog([...context.window.XHS_ACCOUNTS,...context.window.XHS_PLATFORM_ACCOUNTS],accounts);
+const records = validateBackup(payload,catalog);
+// Old XHS-only backups must not discard newer platform accounts or their progress.
+const prior=validateBackup(existing,mergeCatalog([...context.window.XHS_ACCOUNTS,...context.window.XHS_PLATFORM_ACCOUNTS],existing.accounts??[]));
+const merged=[...new Map([...prior,...records].map(r=>[r.order,r])).values()];
+const output = {schema:'jev-xhs-progress',version:2,exportedAt:new Date().toISOString(),accounts,records:merged};
+validateBackup(output,catalog);
 const target = new URL('../public/assets/progress.js',import.meta.url);
 // Retain the preceding shared version outside the website for recovery.
 await fs.mkdir(new URL('../.local/',import.meta.url),{recursive:true});
