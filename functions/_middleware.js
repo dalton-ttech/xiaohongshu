@@ -4,7 +4,7 @@ const COOKIE = 'jev_access';
 const MAX_AGE = 12 * 60 * 60;
 const encoder = new TextEncoder();
 const CSP = "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data: blob:; connect-src 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; form-action 'self'";
-const LOGIN_ASSETS = new Set(['/assets/access.css', '/assets/access.js', '/assets/brand/turingtouch-logo.png', '/assets/fonts/access-manrope.woff2', '/assets/fonts/access-noto.woff2']);
+const LOGIN_ASSETS = new Set(['/assets/access.css', '/assets/access.js', '/assets/access-b1.css', '/assets/access-ascii.js', '/assets/fonts/azeret-mono.woff2', '/assets/brand/turingtouch-logo.png', '/assets/fonts/access-manrope.woff2', '/assets/fonts/access-noto.woff2']);
 
 function secure(response) {
   const result = new Response(response.body, response);

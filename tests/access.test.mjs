@@ -30,7 +30,7 @@ test('logout clears session and authenticated requests cannot write data',async(
 });
 
 test('only entry presentation assets are public; visitor page advertises the hint without relaxing CSP',async()=>{
-  for(const path of ['/assets/access.css','/assets/access.js','/assets/brand/turingtouch-logo.png','/assets/fonts/access-manrope.woff2','/assets/fonts/access-noto.woff2']){
+  for(const path of ['/assets/access.css','/assets/access.js', '/assets/access-b1.css', '/assets/access-ascii.js', '/assets/fonts/azeret-mono.woff2','/assets/brand/turingtouch-logo.png','/assets/fonts/access-manrope.woff2','/assets/fonts/access-noto.woff2']){
     const response=await run(request(path));assert.equal(response.status,200);
     assert.equal((await run(request(path,{method:'POST'}))).status,401);
   }
@@ -38,7 +38,7 @@ test('only entry presentation assets are public; visitor page advertises the hin
   const page=await run(request()),html=await page.text();
   assert.match(html,/name="account" value="访客" readonly/);
   assert.match(html,/placeholder="1105"/);
-  assert.match(html,/欢迎进入图灵看板/);assert.match(html,/访客权限已开通/);
+  assert.ok(!html.includes('欢迎进入图灵看板'), 'The login document must not play a second welcome before navigation');
   assert.match(page.headers.get('content-security-policy'),/script-src 'self'/);
   assert.ok(!page.headers.get('content-security-policy').includes('unsafe-inline'));
 });

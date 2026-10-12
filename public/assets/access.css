@@ -64,15 +64,19 @@
 .access-page.is-arriving .access-card{animation:access-card-out .85s var(--access-ease) forwards}
 .access-header,.access-footer{transition:opacity .7s var(--access-ease)}
 .access-page.is-arriving .access-header,.access-page.is-arriving .access-footer{opacity:.15}
-.access-page.is-settling .access-arrival::before{opacity:1}
+.access-page.is-settling .access-arrival::before{opacity:1;transition-duration:.26s}
+.access-page.is-arriving .access-arrival{animation-duration:.26s}
 .access-arrival-dashboard[hidden]{display:none}
 .visitor-entering body{overflow:hidden}
 .visitor-entering body>.topline,.visitor-entering body>main{filter:blur(10px);opacity:.55}
-.visitor-entering.visitor-revealing body>.topline,.visitor-entering.visitor-revealing body>main{animation:board-focus-in 1.2s cubic-bezier(.4,0,.2,1) both}
+.visitor-entering.visitor-revealing body>.topline,.visitor-entering.visitor-revealing body>main{animation:board-focus-in .9s cubic-bezier(.4,0,.2,1) both}
 .visitor-entering #visitorArrival{display:grid;animation:none}
-.visitor-entering #visitorArrival::before{opacity:1;transition:opacity .95s ease}
+.visitor-entering #visitorArrival::before{opacity:1;transition:opacity .8s ease}
 .visitor-entering #visitorArrival .arrival-light,.visitor-entering #visitorArrival .arrival-lens,.visitor-entering #visitorArrival .arrival-message,.visitor-entering #visitorArrival .arrival-message p{animation:none}
-.visitor-entering.visitor-revealing #visitorArrival{animation:arrival-glass-out 1.1s .1s cubic-bezier(.4,0,.2,1) both}
+.visitor-entering #visitorArrival .arrival-message{opacity:0}
+.visitor-entering.visitor-welcoming #visitorArrival .arrival-message{opacity:1;animation:arrival-copy-in .6s var(--access-ease) both}
+.visitor-entering.visitor-welcoming #visitorArrival .arrival-message p{animation:arrival-copy-in .55s .12s var(--access-ease) both}
+.visitor-entering.visitor-revealing #visitorArrival{animation:arrival-glass-out .9s cubic-bezier(.4,0,.2,1) both}
 .visitor-entering.visitor-revealing #visitorArrival::before{opacity:0}
 .visitor-entering.visitor-revealing #visitorArrival .arrival-message{animation:arrival-copy-out .55s cubic-bezier(.4,0,.2,1) both}
 

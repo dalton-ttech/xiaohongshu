@@ -49,12 +49,10 @@
         const arrival = document.getElementById('accessArrival');
         arrival.hidden = false;
         form.inert = true;
-        arrival.querySelector('.arrival-message').focus({preventScroll: true});
         const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
-        await wait(reduced ? 350 : 1650);
         document.body.classList.add('is-settling');
-        // The next document starts with this same glass and welcome copy, then reveals the board.
-        await wait(reduced ? 0 : 560);
+        // Only a brief glass fade here. The welcome plays once, on the loaded dashboard.
+        await wait(reduced ? 0 : 260);
         write(ARRIVAL, String(Date.now()));
         // A same-URL hash navigation would keep the login document on screen.
         if (location.pathname === '/' || location.pathname === '/index.html') location.reload();
@@ -98,11 +96,12 @@
         const reveal = async () => {
           const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
           await Promise.race([document.fonts.ready, wait(700)]);
-          await wait(reduced ? 0 : 120);
+          document.documentElement.classList.add('visitor-welcoming');
+          await wait(reduced ? 250 : 900);
           document.documentElement.classList.add('visitor-revealing');
-          await wait(reduced ? 0 : 1250);
+          await wait(reduced ? 0 : 950);
           glass.hidden = true;
-          document.documentElement.classList.remove('visitor-entering', 'visitor-revealing');
+          document.documentElement.classList.remove('visitor-entering', 'visitor-welcoming', 'visitor-revealing');
           dashboard.forEach(element => { element.inert = false; });
         };
         reveal();
