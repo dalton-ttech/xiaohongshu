@@ -19,7 +19,7 @@ test('existing XHS drafts and IDs migrate without losing histories; candidates s
  const payload=JSON.parse(storage.getItem(STORAGE_KEY));payload.version=1;delete payload.accounts;for(const r of payload.records){delete r.platform;delete r.uid;delete r.channel;}
  storage.setItem(STORAGE_KEY,JSON.stringify(payload));
  const next=createProgressStore(data,published,storage);
- assert.equal(next.trackedRows().length,57);assert.equal(next.accounts().length,127);
+ assert.equal(next.trackedRows().length,57);assert.equal(next.accounts().length,data.length);
  assert.equal(next.get(6).owner,'原负责人');assert.equal(next.get(6).history[0].message,'原历史');
  assert.equal(next.get(1001).status,'待核实');assert.equal(next.get(1001).tracked,false);
  next.save(6,{note:'新增备注'});assert.equal(JSON.parse(storage.getItem(STORAGE_KEY)).version,2);
@@ -51,7 +51,7 @@ test('batch saves are atomic and assignment never overwrites established progres
  assert.throws(()=>store.saveMany([6,32],p=>({lastContactAt:p.order===32?'2026-02-30':'2026-10-08'})));
  assert.equal(storage.getItem(STORAGE_KEY),before);
  const failed=createProgressStore(data,published,{getItem:()=>null,setItem:()=>{throw Error('quota');}});
- assert.throws(()=>failed.saveAccount(custom),/保存失败/);assert.equal(failed.accounts().length,127);
+ assert.throws(()=>failed.saveAccount(custom),/保存失败/);assert.equal(failed.accounts().length,data.length);
 });
 test('date-only chronology uses available precision and unknown IDs never become contact-person IDs',()=>{
  const store=createProgressStore(data,published,disk());store.save(6,{firstContactAt:'2026-10-08T11:20',lastContactAt:'2026-10-08'});

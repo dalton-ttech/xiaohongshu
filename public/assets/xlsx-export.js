@@ -3,6 +3,7 @@ const xml = value => String(value ?? '').replace(/[\u0000-\u0008\u000b\u000c\u00
 const declaration = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>';
 const relNS = 'http://schemas.openxmlformats.org/package/2006/relationships';
 const officeRel = 'http://schemas.openxmlformats.org/officeDocument/2006/relationships/';
+function columnName(index){let label='';for(let n=index+1;n>0;n=Math.floor((n-1)/26))label=String.fromCharCode(65+(n-1)%26)+label;return label;}
 function cell(column,row,value,style=0,numeric=false) {
   if (value === '' || value == null) return `<c r="${column}${row}" s="${style}"/>`;
   return numeric ? `<c r="${column}${row}" s="${style}"><v>${Number(value)}</v></c>` : `<c r="${column}${row}" s="${style}" t="inlineStr"><is><t xml:space="preserve">${xml(value)}</t></is></c>`;
@@ -17,12 +18,12 @@ export async function exportAccountXlsx(rows,getProgress,meta,onProgress=()=>{})
  if(!rows.length)throw new Error('请先勾选账号');
  if(!window.JSZip)throw new Error('导出组件未加载，请刷新重试');
  const zip=new window.JSZip(),overrides=[],workbookSheets=[],workbookRels=[];
- const headers=['编号','主页截图 / 封面','账号名称','平台账号 ID','粉丝量','领域','负责人','建联状态','首次建联时间','最近跟进时间','下次跟进日期','跟进备注','账号主页链接','资料核对日期','记录更新时间','平台','联系渠道','代表内容链接','资料来源','核实状态','联系人'];
- const widths=[18,50,28,28,12,20,16,24,24,24,18,40,48,18,24,18,18,48,48,16,30];
+ const headers=['编号','主页截图 / 封面','账号名称','平台账号 ID','粉丝量','领域','负责人','建联状态','首次建联时间','最近跟进时间','下次跟进日期','跟进备注','账号主页链接','资料核对日期','记录更新时间','平台','联系渠道','代表内容链接','资料来源','核实状态','联系人','筛选结论','推荐理由','筛选复核事项','代表内容标题','第二条代表内容','第二条内容链接','粉丝口径'];
+ const widths=[18,50,28,28,12,20,16,24,24,24,18,40,48,18,24,18,18,48,48,16,30,18,48,48,36,36,48,22];
  let completed=0,sheetId=0;
  for(const [platform,info]of Object.entries(PLATFORMS)){
   const group=rows.filter(r=>platformOf(r)===platform);if(!group.length)continue;sheetId++;
-  const sheetRows=[`<row r="1" ht="28" customHeight="1">${cell('A',1,'JEV · '+info.name+'建联清单',1)}</row>`,`<row r="2" ht="34" customHeight="1">${cell('A',2,`共 ${group.length} 个账号 · 未知指标留空 · 时间为北京时间；仅日期表示时刻未知 · 名单不会自动回写网站`,5)}</row>`,`<row r="3" ht="28" customHeight="1">${headers.map((v,i)=>cell(String.fromCharCode(65+i),3,i===3?info.idLabel:v,2)).join('')}</row>`];
+  const sheetRows=[`<row r="1" ht="28" customHeight="1">${cell('A',1,'JEV · '+info.name+'建联清单',1)}</row>`,`<row r="2" ht="34" customHeight="1">${cell('A',2,`共 ${group.length} 个账号 · 未知指标留空 · 时间为北京时间；仅日期表示时刻未知 · 名单不会自动回写网站`,5)}</row>`,`<row r="3" ht="28" customHeight="1">${headers.map((v,i)=>cell(columnName(i),3,i===3?info.idLabel:v,2)).join('')}</row>`];
   const anchors=[],imageRels=[],links=[],sheetRels=[];
   for(let i=0;i<group.length;i++){
    const r=group[i],p=getProgress(r.order),n=i+4;onProgress(++completed,rows.length);
@@ -45,9 +46,9 @@ export async function exportAccountXlsx(rows,getProgress,meta,onProgress=()=>{})
     imageRels.push(`<Relationship Id="rId${i+1}" Type="${officeRel}image" Target="../media/${filename}"/>`);
    }
    const modified=p.updatedAt?new Intl.DateTimeFormat('sv-SE',{timeZone:'Asia/Shanghai',year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',hour12:false}).format(new Date(p.updatedAt)).replace(' ','T'):'';
-   const values=[codeOf(r),r.image?'':'截图待补充',r.name,identityText(r),r.fans,r.group,p.owner,p.status,excelDate(p.firstContactAt),excelDate(p.lastContactAt),excelDate(p.nextFollowUpAt),p.note,r.profile,excelDate(r.verifiedAt||r.statusVerifiedAt||''),excelDate(modified),info.name,p.channel,r.caseUrl,r.source||'',r.verification||'已采集',r.contactPerson||''];
-   sheetRows.push(`<row r="${n}" ht="${r.image?155:65}" customHeight="1">${values.map((v,c)=>cell(String.fromCharCode(65+c),n,v,c===4?6:c===8?(p.firstContactAt.length===10?4:3):c===9?(p.lastContactAt.length===10?4:3):c===14?3:[10,13].includes(c)?4:[0,3].includes(c)?7:[12,17].includes(c)?8:0,[4,8,9,10,13,14].includes(c))).join('')}</row>`);
-   for(const [column,url]of [['M',r.profile],['R',r.caseUrl]])if(safeUrl(url)){const id='link'+column+n;links.push(`<hyperlink ref="${column}${n}" r:id="${id}"/>`);sheetRels.push(`<Relationship Id="${id}" Type="${officeRel}hyperlink" Target="${xml(safeUrl(url))}" TargetMode="External"/>`);}
+   const values=[codeOf(r),r.image?'':'截图待补充',r.name,identityText(r),r.fans,r.group,p.owner,p.status,excelDate(p.firstContactAt),excelDate(p.lastContactAt),excelDate(p.nextFollowUpAt),p.note,r.profile,excelDate(r.verifiedAt||r.statusVerifiedAt||''),excelDate(modified),info.name,p.channel,r.caseUrl,r.source||'',r.verification||'已采集',r.contactPerson||'',r.screening||'',r.reviewReason||'',r.reviewCaveat||'',r.example||'',r.secondExample||'',r.secondCaseUrl||'',r.fans==null?'待补充':r.fansApprox?'页面以万显示，换算约数':r.fansApprox===false?'页面显示整数':'采集数值，显示口径见来源'];
+   sheetRows.push(`<row r="${n}" ht="${r.image?155:65}" customHeight="1">${values.map((v,c)=>cell(columnName(c),n,v,c===4?6:c===8?(p.firstContactAt.length===10?4:3):c===9?(p.lastContactAt.length===10?4:3):c===14?3:[10,13].includes(c)?4:[0,3].includes(c)?7:[12,17,26].includes(c)?8:0,[4,8,9,10,13,14].includes(c))).join('')}</row>`);
+   for(const [column,url]of [['M',r.profile],['R',r.caseUrl],['AA',r.secondCaseUrl]])if(safeUrl(url)){const id='link'+column+n;links.push(`<hyperlink ref="${column}${n}" r:id="${id}"/>`);sheetRels.push(`<Relationship Id="${id}" Type="${officeRel}hyperlink" Target="${xml(safeUrl(url))}" TargetMode="External"/>`);}
   }
   if(anchors.length){
    sheetRels.push(`<Relationship Id="rIdDrawing" Type="${officeRel}drawing" Target="../drawings/drawing${sheetId}.xml"/>`);
@@ -55,7 +56,7 @@ export async function exportAccountXlsx(rows,getProgress,meta,onProgress=()=>{})
    zip.file(`xl/drawings/_rels/drawing${sheetId}.xml.rels`,declaration+`<Relationships xmlns="${relNS}">${imageRels.join('')}</Relationships>`);
    overrides.push(`<Override PartName="/xl/drawings/drawing${sheetId}.xml" ContentType="application/vnd.openxmlformats-officedocument.drawing+xml"/>`);
   }
-  zip.file(`xl/worksheets/sheet${sheetId}.xml`,declaration+`<worksheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" xmlns:r="${officeRel.slice(0,-1)}"><dimension ref="A1:U${group.length+3}"/><sheetViews><sheetView workbookViewId="0"><pane xSplit="1" ySplit="3" topLeftCell="B4" activePane="bottomRight" state="frozen"/></sheetView></sheetViews><cols>${widths.map((width,i)=>`<col min="${i+1}" max="${i+1}" width="${width}" customWidth="1"/>`).join('')}</cols><sheetData>${sheetRows.join('')}</sheetData><autoFilter ref="A3:U${group.length+3}"/><mergeCells count="2"><mergeCell ref="A1:U1"/><mergeCell ref="A2:U2"/></mergeCells>${links.length?`<hyperlinks>${links.join('')}</hyperlinks>`:''}${anchors.length?'<drawing r:id="rIdDrawing"/>':''}</worksheet>`);
+  zip.file(`xl/worksheets/sheet${sheetId}.xml`,declaration+`<worksheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" xmlns:r="${officeRel.slice(0,-1)}"><dimension ref="A1:AB${group.length+3}"/><sheetViews><sheetView workbookViewId="0"><pane xSplit="1" ySplit="3" topLeftCell="B4" activePane="bottomRight" state="frozen"/></sheetView></sheetViews><cols>${widths.map((width,i)=>`<col min="${i+1}" max="${i+1}" width="${width}" customWidth="1"/>`).join('')}</cols><sheetData>${sheetRows.join('')}</sheetData><autoFilter ref="A3:AB${group.length+3}"/><mergeCells count="2"><mergeCell ref="A1:AB1"/><mergeCell ref="A2:AB2"/></mergeCells>${links.length?`<hyperlinks>${links.join('')}</hyperlinks>`:''}${anchors.length?'<drawing r:id="rIdDrawing"/>':''}</worksheet>`);
   if(sheetRels.length)zip.file(`xl/worksheets/_rels/sheet${sheetId}.xml.rels`,declaration+`<Relationships xmlns="${relNS}">${sheetRels.join('')}</Relationships>`);
   overrides.push(`<Override PartName="/xl/worksheets/sheet${sheetId}.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml"/>`);
   workbookSheets.push(`<sheet name="${info.name}" sheetId="${sheetId}" r:id="rId${sheetId}"/>`);workbookRels.push(`<Relationship Id="rId${sheetId}" Type="${officeRel}worksheet" Target="worksheets/sheet${sheetId}.xml"/>`);

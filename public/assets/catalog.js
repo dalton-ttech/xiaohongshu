@@ -6,6 +6,18 @@ export const PLATFORMS = {
 export const platformOf = row => row.platform || 'xhs';
 export const codeOf = row => row.uid || 'XHS-'+String(row.order).padStart(3,'0');
 export const identityText = row => row.redId || PLATFORMS[platformOf(row)].idLabel+'待核实';
+export const SCREENINGS = ['优先候选','条件候选','待核实线索','暂不纳入'];
+export const fansText = row => row.fans == null ? '待补充' : (row.fansApprox ? '约 ' : '') + row.fans.toLocaleString('zh-CN');
+export function filterPlatformAccounts(rows,{query='',group='',verification='',screening='',fans='',selected=null}={}) {
+ const keyword=query.trim().toLowerCase();
+ return rows.filter(r=>
+  (!keyword||[r.name,r.redId,r.reviewReason,r.reviewCaveat,r.note,r.team,r.example,r.secondExample,codeOf(r)].join(' ').toLowerCase().includes(keyword))&&
+  (!group||r.group===group)&&(!verification||r.verification===verification)&&
+  (screening==='all'||(screening?r.screening===screening:r.screening!=='暂不纳入'))&&
+  (!fans||(fans==='unknown'?r.fans==null:r.fans!=null&&({small:r.fans<1000,koc:r.fans>=1000&&r.fans<10000,mid:r.fans>=10000&&r.fans<=30000,large:r.fans>30000})[fans]))&&
+  (!selected||selected.has(r.order))
+ );
+}
 export function copyAccounts(rows) {
  const mixed=new Set(rows.map(platformOf)).size>1;
  return rows.map(r=>(mixed?PLATFORMS[platformOf(r)].name+'\t':'')+r.name+'\t'+identityText(r)).join('\n');
@@ -22,15 +34,19 @@ export function validateAccount(input) {
  const r={order:input.order,platform:input.platform,uid:input.uid};
  for(const key of ['name','redId','group','category','team','contactPerson','reading'])r[key]=text(input[key]??'',160,key);
  if(!r.name)throw new Error('请填写账号名称');
- for(const key of ['reviewReason','contact','note','source','example','form'])r[key]=text(input[key]??'',2000,key);
- for(const key of ['profile','caseUrl','sourceUrl']){r[key]=text(input[key]??'',2000,key);if(r[key]&&!safeUrl(r[key]))throw new Error('链接需为完整的 http / https 地址');}
+ for(const key of ['reviewReason','reviewCaveat','contact','note','source','example','secondExample','form'])r[key]=text(input[key]??'',2000,key);
+ for(const key of ['profile','caseUrl','secondCaseUrl','sourceUrl']){r[key]=text(input[key]??'',2000,key);if(r[key]&&!safeUrl(r[key]))throw new Error('链接需为完整的 http / https 地址');}
+ r.screening=text(input.screening??'',30,'筛选结论');
+ if(r.screening&&!SCREENINGS.includes(r.screening))throw new Error('筛选结论不正确');
  for(const key of ['image','qrImage']){
   r[key]=text(input[key]??'',600000,key);
   if(r[key]&&!/^data:image\/(?:png|jpeg|webp);base64,[A-Za-z0-9+/=]+$/.test(r[key])&&!/^assets\/profiles\/[\w.-]+\.(?:jpg|png|webp)$/.test(r[key]))throw new Error('图片请使用本机上传的 JPG、PNG 或 WebP');
  }
  r.fans=input.fans==null||input.fans===''?null:Number(input.fans);
  if(r.fans!==null&&(!Number.isSafeInteger(r.fans)||r.fans<0))throw new Error('粉丝量需为非负整数，未知请留空');
- r.fansRaw=r.fans===null?'待补充':r.fans.toLocaleString('zh-CN');
+ if(input.fansApprox!=null&&typeof input.fansApprox!=='boolean')throw new Error('粉丝口径不正确');
+ r.fansApprox=r.fans!==null&&input.fansApprox===true;
+ r.fansRaw=fansText(r);
  r.verification=input.verification==='已核实'?'已核实':'待核实';
  r.verifiedAt=text(input.verifiedAt??'',10,'资料核对日期');
  if(r.verifiedAt&&(!/^\d{4}-\d{2}-\d{2}$/.test(r.verifiedAt)||!Number.isFinite(Date.parse(r.verifiedAt))||new Date(r.verifiedAt).toISOString().slice(0,10)!==r.verifiedAt))throw new Error('资料核对日期不正确');

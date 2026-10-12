@@ -1,0 +1,109 @@
+{
+  "title": "个人账号＋他人论文｜重点私信专项名单",
+  "verifiedAt": "2026-10-12",
+  "criteria": "同时看到个人生活或兴趣记录，以及对明确外部研究的论文分享、阅读笔记或介绍。只展示本人论文、求论文推荐、泛技术讨论、纯论文垂直号，不进入本名单。",
+  "method": "通过用户指定的 Chrome 小红书窗口，逐个查看公开主页，并打开代表论文笔记核对正文与可见评论。外部研究归属依据笔记中的团队、作者称谓和阅读者视角判断；仅豆豆案例另有明确未参与工作的作者回复。未逐一核对全部论文作者名单。",
+  "limits": "这是内容适配名单，合作意愿、收费、是否愿意介绍本项目均未确认。粉丝量为核验日主页值；3.7万为平台约数。论文案例有历史笔记，不代表近期持续接稿。未发送私信。",
+  "newAgainstPrevious10": 8,
+  "retainedFromPrevious10": 4,
+  "candidates": [
+    {
+      "name": "65536", "redId": "4296901790", "profileId": "60c844e40000000020028672", "fans": 3570, "fansRaw": "3570", "origin": "复核保留", "priority": "先联系",
+      "mix": "Agent安全、论文解读＋摄影、个人随记", "fit": "Agent与可信AI方向更接近本次推广；主页不是单一论文发布栏。",
+      "paper": {"title": "Google: 自进化Agent如何从历史经验学习", "id": "69fe0599000000001f003a41", "token": "ABqmUDqZ4L1239-L33cLfh9G_gb32vJ8bjlRPf1C3aXiY=", "basis": "正文介绍Google的SkillOS，区分执行器和技能管理器，以“作者构造”称谓描述研究设计与实验；另有上海AI lab、Meta研究解读。"},
+      "life": {"title": "复得返自然", "id": "6ab256d9000000003101ff31", "token": "ABjHF6IvD1E6WTgw3B9aj8tGaRLfoIUBbkHXxNseu6vEU="},
+      "caveat": "有公开外部研究解读，但未见本项目合作承诺。"
+    },
+    {
+      "name": "豆豆豆豆超可爱", "redId": "doudou1999", "profileId": "5a049e6711be1068daa1c076", "fans": 37000, "fansRaw": "3.7万", "origin": "复核保留", "priority": "先联系",
+      "mix": "博士日常、旅行穿搭＋AI论文介绍", "fit": "有明确帮其他团队宣传的案例，是本轮最强的非本人论文证据。",
+      "paper": {"title": "LingBot-VA：统一视频-动作世界模型！", "id": "6983256e000000002203ada4", "token": "ABTE6Obndtnx0lvxIQR9HXu9eqXno0Fb4sX_frfYWFmDI=", "basis": "正文说帮忙宣传蚂蚁的工作；被问是否参与时，作者回复：没有滴 我不做具身 是帮忙宣传的！"},
+      "life": {"title": "读博日常🧩 北京大雪的Live我能拍100张！", "id": "696cdbc5000000002102b49e", "token": "AB7NSTJYFfuAxPOdaQkzRe3egDdjcdxN5oEUXA8mL2Zfc="},
+      "caveat": "体量高于参考号；历史帮忙宣传不等于接受付费供稿，费用待询。"
+    },
+    {
+      "name": "Purshow", "redId": "purshow", "profileId": "630de7270000000012000eb3", "fans": 4864, "fansRaw": "4864", "origin": "新增", "priority": "先联系",
+      "mix": "多模态与模型论文＋网球、音乐、毕业随笔", "fit": "既写本人工作，也单独解读外部论文，满足不是只发自己论文的条件。",
+      "paper": {"title": "哈哈，你也想学DeepSeek V4.1 用的 YOCO 嘛", "id": "6ab00f7e000000002700a168", "token": "AB_1qqXrNZzfVwKK2MEbYBq5o1dtgW2mOJB2frjLQIvHk=", "basis": "从读者视角评价YOCO论文及其变种、对其他团队的启发。没有把其本人UniWorld-Design宣传作为入选证据。"},
+      "life": {"title": "网球王子 完结", "id": "6a70d27b0000000022010659", "token": "ABQSAgTCOrVRYVzmAhTFhWscxgwc04pQA6MUEttAuHDOA="},
+      "caveat": "模型、多模态内容占比较高；本项目选题接受度待询。"
+    },
+    {
+      "name": "深海咸鱼", "redId": "9477964001", "profileId": "6074fda00000000001007168", "fans": 2209, "fansRaw": "2209", "origin": "复核保留", "priority": "先联系",
+      "mix": "3DV研究、论文阅读＋游戏评论、读博记录", "fit": "论文与生活混合明显，外部论文分享包含方法梳理与个人理解。",
+      "paper": {"title": "【论文分享】REPA-E：端到端微调扩散模型", "id": "680a01b5000000000f03ab4a", "token": "ABZyyeG8C-nNqeymJcMCetyAayzyYA2U7Gu82uLXn8vic=", "basis": "正文明确介绍谢赛宁团队的REPA-E，梳理研究发现并给出阅读理解。案例日期2025-04-24。"},
+      "life": {"title": "神海/美末简评：游戏应该好玩", "id": "670928bb000000002a031bd9", "token": "AB1wjM0Mn_EICA5f4Z4lYEGM--E2CVNjhj00W0JCbcF14="},
+      "caveat": "验证案例较早，方向偏视觉；需要确认现在是否仍愿意介绍其他方向研究。"
+    },
+    {
+      "name": "duckduck", "redId": "756193582", "profileId": "5dfb55660000000001000f3c", "fans": 5907, "fansRaw": "5907", "origin": "复核保留", "priority": "试联",
+      "mix": "AI研究阅读、创业学习＋游戏与个人状态", "fit": "有外部论文系列的阅读评论，个人表达明显。",
+      "paper": {"title": "品鉴DMD系列有感，是否有更好的蒸馏方法？", "id": "6a3a937f0000000021018ee5", "token": "ABd1EOB7aqruLS6mbrJFmrUtzrfe9nWMWo_8vNv8BUdLc=", "basis": "正文讨论读DMD系列后的KL损失、GAN联系与训练开销；作者在评论里说明是读论文后的理解。"},
+      "life": {"title": "洛克手游有点上头，回归工作状态", "id": "69fc5b8a000000001b02027b", "token": "ABciB5dm23q9Ru0LT-gsWM3TdCuu1yCu-VX1uyNqEczWc="},
+      "caveat": "属于简短读后讨论，未核实成篇供稿案例。原先的“世界模型记忆相关工作”是求推荐，已不作为入选依据。"
+    },
+    {
+      "name": "一只博士生📓", "redId": "1801202425", "profileId": "604083f9000000000101d5f9", "fans": 1629, "fansRaw": "1629", "origin": "新增", "priority": "试联",
+      "mix": "AI论文、英语编程学习＋留学、个人成长记录", "fit": "以个人读博学习身份分享外部研究，不限于展示本人发表成果。",
+      "paper": {"title": "AI论文 | Mean Flow均流匹配| one-step生成", "id": "6935b130000000001b026de0", "token": "ABJr3SFkFzhi74Y14E1ve_IKOS9Mju3CxEzO7449SlL7I=", "basis": "以第三人称完整介绍MeanFlow的平均速度思路、训练目标及实验；主页另有OpenAI DALL·E 2论文阅读。编辑于2025-12-08。"},
+      "life": {"title": "在英国快两年 本人英语水平取得了新的退展", "id": "6a862f55000000000502a9a0", "token": "AB9YS4Yk3dnOFMr76PQUVf67Irn54s8hilJxjNHIxJQwY="},
+      "caveat": "学习成长内容多于生活杂记，形态与示例不是完全一致；代表论文笔记可见点赞为5。"
+    },
+    {
+      "name": "jankinf", "redId": "421493142", "profileId": "590d432a6a6a6904c010e9f8", "fans": 798, "fansRaw": "798", "origin": "新增", "priority": "先联系",
+      "mix": "世界模型与论文解读＋唱片、美食、篮球日常", "fit": "个人生活内容丰富，主页还出现Jev相关介绍，与参考账号形态接近。",
+      "paper": {"title": "MeanFlow：单步生成模型的兴起", "id": "6aa808960000000011035b11", "token": "ABnzNnxkaquzLQ9_qOEjNF5NNlsugZYx9hahbdX0vlKOw=", "basis": "正文介绍MeanFlow论文的一步生成方法及与预训练、蒸馏的关系；另有IRIS、Genie、RSSM研究介绍。"},
+      "life": {"title": "唱片收藏", "id": "6ac07f61000000001c00df47", "token": "AB_-YfC4kCvqDHURhgVphIgkeE-mtu7WjI_23FKhJXO04="},
+      "caveat": "千粉以下。主页出现Jev不代表已有合作，本轮未确认那篇的合作背景。"
+    },
+    {
+      "name": "种政Kranz", "redId": "557729085", "profileId": "5c87e90000000000120002bb", "fans": 227, "fansRaw": "227", "origin": "新增", "priority": "先联系",
+      "mix": "CV论文阅读＋骑行、数码、咖啡、购车记录", "fit": "个人兴趣内容明显，外部论文阅读不止一篇。",
+      "paper": {"title": "「论文阅读」谢赛宁 REPA/RAE 系列简读", "id": "6a2bd62c0000000007023369", "token": "AB8gS_XBezhSdrPMChOdMdptc3B0Wvq_EC3hj0n_HFW_M=", "basis": "直接点名谢赛宁团队，梳理REPA、RAE、RAEv2系列；以读者身份总结。"},
+      "life": {"title": "打卡深圳唤醒咖啡节✌️", "id": "6814e45f000000002002af07", "token": "ABNhZ3ia3w-wRtLZJXsf7kwua3bVPQ8GSLFKbNJ9OgIXc="},
+      "caveat": "粉丝体量小，适合先确认兴趣；不据此推断报价低或回复率高。"
+    },
+    {
+      "name": "梦剧场王子C罗", "redId": "8070329294", "profileId": "61a8f61c000000001000e8c9", "fans": 522, "fansRaw": "522", "origin": "新增", "priority": "试联",
+      "mix": "论文阅读与本人科研＋毕业、演唱会、家庭日常", "fit": "虽然也发本人NeurIPS成果，但有独立的其他团队论文阅读案例。",
+      "paper": {"title": "MeanFlow：近期看过最优雅的论文没有之一", "id": "685ed13a0000000017031365", "token": "ABwtkyM3T1DEvDE3KiP6oz0jhEGmKwAxwinkWeJPB5kEY=", "basis": "正文说第一次在小红书做论文笔记分享，明确提到何恺明与MIT，从阅读者视角讨论MeanFlow。日期2025-06-28。"},
+      "life": {"title": "毕业快乐😀🎓", "id": "6a49fab6000000001702ed74", "token": "AB3CZtINmh1SJ5ge-MlnSvBgsK16wNGefvSvlfKCbAx4Y="},
+      "caveat": "本轮明确核验1篇外部阅读笔记，案例较早，不能推断长期接稿。"
+    },
+    {
+      "name": "AAA橱柜安装张工", "redId": "5082093226", "profileId": "63e0415b0000000026011183", "fans": 314, "fansRaw": "314", "origin": "新增", "priority": "试联",
+      "mix": "生成模型论文实现＋找工、美食、篮球", "fit": "账号名与科研身份不直观，但主页确有读博找工记录和多篇外部论文讲解。",
+      "paper": {"title": "一行代码把Mean Flow(MF)变成iMF(Improved)", "id": "6934b958000000000d03d646", "token": "ABvh0Z-FuEwAPUUnWo1WYd_UDyKcgwZkhlNKVdlV7HRJc=", "basis": "正文区分原作者代码与笔者根据文章修改的代码，并推荐读者阅读原文，说明是复现和解读外部研究。日期2025-12-07。"},
+      "life": {"title": "美食分享:烤葡萄", "id": "67bd4bc0000000002503e83c", "token": "ABX8vhK1J_xA5f_oMimCUIiczZHUGoAiHTH-6wfutsfMc="},
+      "caveat": "内容偏数学与代码实现，需确认是否接受评测或Agent方向介绍。"
+    },
+    {
+      "name": "阿龙", "redId": "5608546121", "profileId": "62a029e100000000210217c1", "fans": 211, "fansRaw": "211", "origin": "新增", "priority": "试联",
+      "mix": "VLA与论文阅读＋国际象棋、个人方法论", "fit": "能看到外部论文阅读与个人兴趣记录，但生活内容比参考号少。",
+      "paper": {"title": "self-flow 阅读笔记", "id": "6a69dfac000000000f0135fa", "token": "ABgBdRUrZm0Ojy-VZNwUbPyiJNyB2NToR1LB6VSdBTvhg=", "basis": "正文以阅读笔记形式分点梳理Self-Flow的研究贡献；没有把自己的项目当作论文案例。"},
+      "life": {"title": "chess.com 上1300分了！", "id": "6aa2d9840000000026018dcc", "token": "AB7uWjDnWokMkzkW4U5sW2lr3mYC7eR9E9q-B78jWg4dg="},
+      "caveat": "研究内容占比高，个人兴趣记录较少，作为第二轮试联。"
+    },
+    {
+      "name": "黄仕", "redId": "4394024648", "profileId": "64c9e547000000000b004c89", "fans": 215, "fansRaw": "215", "origin": "新增", "priority": "试联",
+      "mix": "生成模型阅读评论＋历史兴趣、个人杂谈", "fit": "个人兴趣杂谈型账号，有明确外部论文对比解读。",
+      "paper": {"title": "kaiming的JiT", "id": "691c6447000000001e02a579", "token": "ABTn3ZtfIm9V9B2Eh2o5YY4JKQawEhlRdw-twPgnHZapg=", "basis": "对何恺明JiT展开阅读评论，比较REPA、DeTok、DDT等其他工作，以作者与读者区分叙述。日期2025-11-18。"},
+      "life": {"title": "明代陕西籍进士统计", "id": "6a49fcbe000000002003b492", "token": "AB3CZtINmh1SJ5ge-MlnSvBkSSmYyKX6b14A9U3UDJpeI="},
+      "caveat": "个人内容以历史兴趣为主，生活日记较少；作为低优先级试联。"
+    }
+  ],
+  "heldFromPrevious": [
+    {"name": "Jack鹿", "reason": "已见本人ICML成果与参会生活，尚未核实独立的他人论文介绍。"},
+    {"name": "Levi~", "reason": "已见本人NeurIPS成果与猫、篮球内容，尚未核实他人论文分享。"},
+    {"name": "0xRyan", "reason": "已见FlexiWorld研究相关内容，未拿到独立外部论文分享证据。"},
+    {"name": "yiiing", "reason": "世界模型讨论活动不能直接等同于介绍其他人的论文。"},
+    {"name": "Hearts of Stone", "reason": "本人CVPR成果及因果ML讨论不足以证明独立外部论文分享。"},
+    {"name": "宾大出逃AI PhD", "reason": "已核实Anthropic外部研究博客解读，但尚未补到明确论文案例，暂不计入严格论文名单。"}
+  ],
+  "otherScreeningNotes": [
+    "WhyWait、黄皮飞鼠、今天学习了吗：虽有论文内容，但本轮可见主页以技术或论文为主，未放入个人生活混合专项。",
+    "vvvvvjdy：外部工作对比与本人SRA宣传混在一起，暂未找到独立案例，不优先。",
+    "海棠雨cool：主页生活属性符合，但当前读取到的论文正文仅标签，图片中的具体分享内容未完成核验，暂不计入。",
+    "Taam叔叔：确有外部论文带读与个人生活，但本轮案例偏视听艺术人文论文，未列入AI技术论文重点名单。"
+  ]
+}
