@@ -28,3 +28,29 @@ test('logout clears session and authenticated requests cannot write data',async(
   const logout=await run(request('/auth/logout',{method:'POST',headers:{Origin:origin,Cookie:cookie}}));assert.ok(logout.headers.get('set-cookie').includes('Max-Age=0'));
   assert.equal((await run(request('/assets/progress.js',{method:'POST',headers:{Cookie:cookie},body:'bad'}))).status,405);
 });
+
+test('only entry presentation assets are public; visitor page advertises the hint without relaxing CSP',async()=>{
+  for(const path of ['/assets/access.css','/assets/access.js','/assets/brand/turingtouch-logo.png','/assets/fonts/access-manrope.woff2','/assets/fonts/access-noto.woff2']){
+    const response=await run(request(path));assert.equal(response.status,200);
+    assert.equal((await run(request(path,{method:'POST'}))).status,401);
+  }
+  for(const path of ['/assets/catalog.js','/research/xhs-personal-papers-2026-10-12.json','/assets/fonts/other.woff2'])assert.equal((await run(request(path))).status,401);
+  const page=await run(request()),html=await page.text();
+  assert.match(html,/name="account" value="访客" readonly/);
+  assert.match(html,/placeholder="1105"/);
+  assert.match(html,/欢迎进入图灵看板/);assert.match(html,/访客权限已开通/);
+  assert.match(page.headers.get('content-security-policy'),/script-src 'self'/);
+  assert.ok(!page.headers.get('content-security-policy').includes('unsafe-inline'));
+});
+
+test('animated login returns a signed session only after successful verification',async()=>{
+  const options={method:'POST',headers:{Origin:origin,Accept:'application/json'}};
+  const denied=await run(request('/auth/login',{...options,body:'account=访客&password=wrong'}));
+  assert.equal(denied.status,401);assert.equal((await denied.json()).ok,false);assert.equal(denied.headers.get('set-cookie'),null);
+  const accepted=await run(request('/auth/login',{...options,body:'account=访客&password=test-password'}));
+  assert.equal(accepted.status,200);assert.deepEqual(await accepted.json(),{ok:true});
+  const cookie=accepted.headers.get('set-cookie').split(';')[0];
+  assert.equal((await run(request('/assets/accounts.js',{headers:{Cookie:cookie}}))).status,200);
+  assert.equal((await run(request('/auth/login',{...options,headers:{...options.headers,Origin:'https://other.example'},body:'password=test-password'}))).status,403);
+  const oversized=await run(request('/auth/login',{...options,body:'password='+ 'x'.repeat(1030)}));assert.equal(oversized.status,400);assert.equal((await oversized.json()).ok,false);
+});

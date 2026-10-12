@@ -1,0 +1,101 @@
+@font-face{font-family:Access Manrope;src:url('/assets/fonts/access-manrope.woff2') format('woff2');font-style:normal;font-weight:400 700;font-display:swap}
+@font-face{font-family:Access Noto;src:url('/assets/fonts/access-noto.woff2') format('woff2');font-style:normal;font-weight:400 700;font-display:swap}
+
+.access-page{--access-ink:oklch(26% .018 258);--access-muted:oklch(53% .014 258);--access-ease:cubic-bezier(.22,1,.36,1);margin:0;min-height:100svh;display:flex;flex-direction:column;color:var(--access-ink);background:oklch(97.4% .006 250);font:14px/1.6 'Access Manrope','Access Noto','PingFang SC','Microsoft YaHei',sans-serif;isolation:isolate}
+.access-page *{box-sizing:border-box}
+.access-page [hidden]{display:none!important}
+.access-atmosphere{position:fixed;inset:0;overflow:hidden;z-index:-1;pointer-events:none;background:radial-gradient(ellipse at 77% 70%,oklch(88% .027 240 / .38),transparent 50%),radial-gradient(ellipse at 22% 74%,oklch(90% .025 68 / .4),transparent 43%)}
+.access-orbit{position:absolute;border:1px solid oklch(100% 0 0 / .8);border-radius:50%;box-shadow:inset 0 1px 1px oklch(100% 0 0 / .9),inset 0 -26px 40px oklch(86% .012 252 / .25),0 30px 90px oklch(75% .02 252 / .06);background:linear-gradient(145deg,oklch(100% 0 0 / .35),oklch(100% 0 0 / .02) 48%,oklch(95% .007 252 / .3));transform:rotate(-28deg);pointer-events:none}
+.orbit-one{width:880px;height:420px;left:calc(50% - 925px);top:calc(50% - 170px)}
+.orbit-two{width:880px;height:470px;right:calc(50% - 985px);top:calc(50% - 35px);transform:rotate(-32deg);opacity:.8}
+.access-horizon{position:absolute;inset:auto -10% -30vh;height:52vh;border-radius:50%;background:oklch(100% 0 0 / .62);filter:blur(44px)}
+.access-header{display:flex;align-items:center;justify-content:space-between;padding:36px 48px;gap:24px}
+.access-wordmark{display:flex;align-items:center;text-decoration:none;color:var(--access-ink);transition:opacity .2s}
+.access-brand-image{position:relative;display:block;width:188px;aspect-ratio:5.8/1;overflow:hidden}
+/* Frame the original transparent artwork without altering its pixels. */
+.access-brand-image img{position:absolute;display:block;width:142.4%;max-width:none;height:auto;left:-23.7%;top:-78%}
+.access-wordmark:hover{opacity:.78}
+.access-header-note{display:flex;align-items:center;gap:8px;font-size:11px;letter-spacing:.5px;color:var(--access-muted)}
+.access-header-note i{width:5px;height:5px;border-radius:50%;background:oklch(62% .045 165);box-shadow:0 0 0 4px oklch(62% .045 165 / .065)}
+.access-main{flex:1;display:grid;place-items:center;padding:28px 24px 52px}
+.access-card{position:relative;width:min(424px,100%);padding:42px 38px 28px;border-radius:4px;border:1px solid oklch(100% 0 0 / .94);background:linear-gradient(155deg,oklch(100% 0 0 / .76),oklch(99% .004 252 / .52));box-shadow:0 24px 72px -24px oklch(44% .028 260 / .17),inset 0 1px 0 oklch(100% 0 0 / .96),0 0 0 1px oklch(85% .014 260 / .18);backdrop-filter:blur(24px) saturate(1.12);-webkit-backdrop-filter:blur(24px) saturate(1.12);animation:access-reveal .65s var(--access-ease) both}
+.access-card-heading{text-align:center;margin-bottom:32px}
+.access-eyebrow{display:block;font-family:'Access Manrope',sans-serif;font-size:9px;font-weight:600;letter-spacing:2.7px;color:oklch(57% .018 258)}
+.access-card h1{font-size:34px;font-weight:500;letter-spacing:-1.5px;line-height:1.4;margin:12px 0 10px}
+.access-card-heading p{margin:0;color:var(--access-muted);font-size:12px;letter-spacing:.6px}
+.access-label{display:block;font-size:11px;font-weight:500;margin:0 0 8px 3px;color:oklch(44% .018 258)}
+.access-field{display:flex;align-items:center;gap:11px;height:54px;padding:0 15px;background:oklch(100% 0 0 / .48);border:1px solid oklch(84% .014 258 / .7);border-radius:3px;box-shadow:0 1px 2px oklch(36% .018 252 / .018);transition:border-color .2s,box-shadow .2s}
+.access-field:focus-within{border-color:oklch(63% .045 250 / .7);box-shadow:0 0 0 3px oklch(75% .035 250 / .13)}
+.access-field>svg{flex:0 0 18px;width:18px;height:18px;stroke:oklch(60% .012 258);stroke-width:1.35;stroke-linecap:round;stroke-linejoin:round}
+.access-field input{min-width:0;width:100%;height:100%;padding:0;background:transparent;border:0;outline:none;color:var(--access-ink);font:400 14px/1.5 'Access Manrope','Access Noto','PingFang SC','Microsoft YaHei',sans-serif;border-radius:0}
+.access-field input::placeholder{color:oklch(30% .018 258 / .36);opacity:1;letter-spacing:3px}
+.access-field input[readonly]{cursor:default}
+.access-account-field{margin-bottom:22px}
+.access-field-tag{font:500 8px/1 'Access Manrope',sans-serif;letter-spacing:1.7px;color:oklch(58% .02 258);padding:5px 6px;border:1px solid oklch(85% .014 258 / .7);border-radius:2px}
+.access-hint{font-size:10px;color:oklch(55% .014 258);margin:11px 2px 0;line-height:1.7}
+.access-error{font-size:11px;color:oklch(49% .14 25);min-height:20px;line-height:20px;margin:8px 2px 11px}
+.access-submit{position:relative;isolation:isolate;overflow:hidden;display:flex;align-items:center;justify-content:center;gap:12px;width:100%;height:52px;padding:0 24px;border:1px solid oklch(42% .035 258);border-radius:3px;background:linear-gradient(112deg,oklch(34% .03 258),oklch(42% .047 258) 48%,oklch(33% .028 252));color:oklch(98% .003 258);font:500 13px/1.5 'Access Noto','PingFang SC','Microsoft YaHei',sans-serif;letter-spacing:1px;cursor:pointer;box-shadow:inset 0 1px 0 oklch(100% 0 0 / .16),0 4px 12px oklch(27% .025 258 / .1);transition:transform .3s var(--access-ease),box-shadow .3s, border-color .3s}
+.access-submit:hover:not(:disabled){transform:translateY(-2px);border-color:oklch(58% .055 258);box-shadow:inset 0 1px 0 oklch(100% 0 0 / .24),0 9px 22px -8px oklch(34% .04 258 / .3)}
+.access-submit:active:not(:disabled){transform:translateY(0) scale(.99);transition-duration:.12s}
+.access-submit:disabled{cursor:wait;opacity:.85}
+.access-submit>span{position:relative;z-index:2}
+.access-submit::before{content:"";position:absolute;inset:-100% -40%;z-index:-1;background:linear-gradient(112deg,transparent 22%,oklch(66% .045 254 / .16) 42%,oklch(80% .022 252 / .21) 50%,transparent 68%);transform:translateX(-22%);animation:access-flow 7s ease-in-out infinite alternate;pointer-events:none}
+.access-submit::after{content:"";position:absolute;inset:-80% 0;z-index:1;opacity:0;background:linear-gradient(108deg,transparent 25%,oklch(96% .008 250 / .12) 44%,oklch(100% 0 0 / .24) 50%,transparent 70%);transform:translateX(-110%);pointer-events:none}
+@media(hover:hover) and (pointer:fine){.access-submit:hover:not(:disabled)::after{animation:access-sheen .9s cubic-bezier(.16,1,.3,1) both}}
+.access-submit:focus-visible::after{animation:access-sheen .9s cubic-bezier(.16,1,.3,1) both}
+.access-submit:disabled::before{animation-play-state:paused}
+.access-submit:disabled::after{animation:none;opacity:0}
+.access-spinner{display:none;width:16px;height:16px;border:1.5px solid oklch(100% 0 0 / .25);border-top-color:oklch(100% 0 0 / .95);border-radius:50%;animation:access-spin .7s linear infinite}
+.access-page.is-checking .access-spinner{display:block}
+.access-card-foot{display:flex;align-items:center;justify-content:center;gap:13px;margin-top:29px;font-size:9px;color:oklch(61% .012 258);white-space:nowrap;letter-spacing:.5px}
+.access-foot-line{width:24px;height:1px;background:oklch(82% .012 258 / .7)}
+.access-footer{display:flex;justify-content:space-between;gap:20px;align-items:center;padding:24px 48px 30px;color:oklch(61% .015 258);font-size:10px;letter-spacing:.5px}
+.access-footer>span:first-child{font:500 8px/1.5 'Access Manrope',sans-serif;letter-spacing:1.7px}
+.access-page :focus-visible{outline:2px solid oklch(49% .07 245);outline-offset:4px}
+.access-page input:focus-visible{outline:none}
+.access-arrival{--access-ease:cubic-bezier(.22,1,.36,1);position:fixed;inset:0;z-index:200;display:grid;place-items:center;overflow:hidden;text-align:center;color:oklch(26% .018 258);font:14px/1.6 'Access Manrope','Access Noto','PingFang SC','Microsoft YaHei',sans-serif;background:linear-gradient(125deg,oklch(98% .006 248 / .52),oklch(97% .008 252 / .4) 48%,oklch(95% .014 248 / .58));backdrop-filter:blur(36px) saturate(1.08);-webkit-backdrop-filter:blur(36px) saturate(1.08);animation:arrival-glass-in .85s var(--access-ease) both}
+.access-arrival::before{content:"";position:absolute;inset:0;background:oklch(97% .008 252);opacity:0;transition:opacity .55s ease}
+.arrival-light{position:absolute;inset:-25%;background:radial-gradient(ellipse at 32% 52%,oklch(100% 0 0 / .64),transparent 52%),linear-gradient(125deg,transparent 35%,oklch(100% 0 0 / .44) 48%,transparent 65%);filter:blur(36px);animation:arrival-light-in 1.4s var(--access-ease) both}
+.arrival-lens{position:absolute;width:min(800px,145vw);height:min(470px,110vw);border-radius:50%;transform:rotate(-24deg);border:1px solid oklch(100% 0 0 / .32);background:linear-gradient(160deg,oklch(100% 0 0 / .03),oklch(100% 0 0 / .16) 44%,oklch(96% .014 240 / .05));box-shadow:inset 0 1px 1px oklch(100% 0 0 / .5);animation:arrival-lens-in 1.2s var(--access-ease) both}
+.arrival-message{position:relative;padding:32px 16px;outline:none;animation:arrival-copy-in .85s .2s var(--access-ease) both}
+.arrival-message h2{font-size:clamp(27px,3.3vw,40px);line-height:1.5;font-weight:500;letter-spacing:-1.3px;margin:17px 0 12px}
+.arrival-message p{font-size:13px;letter-spacing:3px;color:oklch(49% .03 250);margin:0;animation:arrival-copy-in .7s .4s var(--access-ease) both}
+.arrival-rule{display:block;width:34px;height:1px;background:oklch(67% .026 250 / .5);margin:30px auto 0}
+.access-page.is-arriving .access-card{animation:access-card-out .85s var(--access-ease) forwards}
+.access-header,.access-footer{transition:opacity .7s var(--access-ease)}
+.access-page.is-arriving .access-header,.access-page.is-arriving .access-footer{opacity:.15}
+.access-page.is-settling .access-arrival::before{opacity:1}
+.access-arrival-dashboard[hidden]{display:none}
+.visitor-entering body{overflow:hidden}
+.visitor-entering body>.topline,.visitor-entering body>main{filter:blur(10px);opacity:.55}
+.visitor-entering.visitor-revealing body>.topline,.visitor-entering.visitor-revealing body>main{animation:board-focus-in 1.2s cubic-bezier(.4,0,.2,1) both}
+.visitor-entering #visitorArrival{display:grid;animation:none}
+.visitor-entering #visitorArrival::before{opacity:1;transition:opacity .95s ease}
+.visitor-entering #visitorArrival .arrival-light,.visitor-entering #visitorArrival .arrival-lens,.visitor-entering #visitorArrival .arrival-message,.visitor-entering #visitorArrival .arrival-message p{animation:none}
+.visitor-entering.visitor-revealing #visitorArrival{animation:arrival-glass-out 1.1s .1s cubic-bezier(.4,0,.2,1) both}
+.visitor-entering.visitor-revealing #visitorArrival::before{opacity:0}
+.visitor-entering.visitor-revealing #visitorArrival .arrival-message{animation:arrival-copy-out .55s cubic-bezier(.4,0,.2,1) both}
+
+.visitor-account{position:relative;flex:0 0 auto;display:flex;align-items:center}
+.session-actions .visitor-badge{display:grid;place-items:center;min-width:48px;height:32px;min-height:32px;padding:4px 12px;border-radius:0;border:1px solid var(--line);background:var(--paper);color:var(--ink);font:inherit;font-size:11px;cursor:pointer}
+.session-actions .visitor-badge:hover{border-color:#999}
+.visitor-badge:focus-visible{outline:2px solid var(--green);outline-offset:4px}
+.visitor-tooltip{position:absolute;right:0;top:calc(100% + 12px);z-index:100;min-width:140px;padding:13px 17px;text-align:center;border:1px solid oklch(88% .009 252);border-radius:0;background:oklch(99% .004 252 / .94);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:0 9px 30px oklch(35% .025 252 / .09);color:oklch(36% .025 252);font:500 12px/1.5 'Access Manrope','Access Noto','Microsoft YaHei',sans-serif;white-space:nowrap;opacity:0;visibility:hidden;transform:translateY(-4px);transition:opacity .18s,transform .18s,visibility .18s;pointer-events:none}
+.visitor-account.is-open .visitor-tooltip{visibility:visible;opacity:1;transform:translateY(0)}
+
+@keyframes access-reveal{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+@keyframes access-flow{to{transform:translateX(22%)}}
+@keyframes access-sheen{0%{opacity:0;transform:translateX(-110%)}15%{opacity:1}100%{opacity:0;transform:translateX(110%)}}
+@keyframes access-spin{to{transform:rotate(360deg)}}
+@keyframes arrival-glass-in{from{opacity:0;backdrop-filter:blur(0) saturate(1.08);-webkit-backdrop-filter:blur(0) saturate(1.08)}to{opacity:1;backdrop-filter:blur(36px) saturate(1.08);-webkit-backdrop-filter:blur(36px) saturate(1.08)}}
+@keyframes arrival-light-in{from{opacity:0;transform:translateX(-3%)}to{opacity:1;transform:translateX(0)}}
+@keyframes arrival-lens-in{from{opacity:0}to{opacity:1}}
+@keyframes arrival-copy-in{from{opacity:0;filter:blur(5px);transform:translateY(5px)}to{opacity:1;filter:blur(0);transform:translateY(0)}}
+@keyframes access-card-out{to{opacity:0;transform:translateY(-4px)}}
+@keyframes arrival-glass-out{from{opacity:1;backdrop-filter:blur(36px) saturate(1.08);-webkit-backdrop-filter:blur(36px) saturate(1.08)}to{opacity:0;backdrop-filter:blur(0) saturate(1.08);-webkit-backdrop-filter:blur(0) saturate(1.08)}}
+@keyframes board-focus-in{from{filter:blur(10px);opacity:.55}to{filter:blur(0);opacity:1}}
+@keyframes arrival-copy-out{to{opacity:0;filter:blur(5px);transform:translateY(-4px)}}
+@media(max-width:600px){.access-header{padding:24px}.access-brand-image{width:160px}.access-header-note{font-size:10px}.access-main{padding:24px 20px 38px}.access-card{padding:36px 26px 26px;border-radius:4px}.access-card h1{font-size:31px}.access-field input{font-size:16px}.access-footer{padding:18px 24px 26px;justify-content:center}.access-footer>span:first-child{display:none}.orbit-one{left:-680px}.orbit-two{right:-760px}.arrival-message p{font-size:12px;letter-spacing:2px}.session-actions{gap:8px}.session-actions .visitor-badge{font-size:10px}.visitor-tooltip{min-width:132px}}
+@media(max-height:700px) and (min-width:601px){.access-header{padding-top:22px;padding-bottom:18px}.access-main{padding-top:10px;padding-bottom:24px}.access-card{padding-top:30px}.access-card-heading{margin-bottom:22px}.access-footer{padding-top:14px;padding-bottom:18px}}
+@media(prefers-reduced-motion:reduce){.visitor-entering body>.topline,.visitor-entering body>main{filter:none;opacity:1;animation:none!important}.access-arrival,.access-arrival *,.access-arrival::before{animation:none!important;transition:none!important}.access-page *,.access-page *::before,.access-page *::after,.visitor-badge,.visitor-tooltip{animation:none!important;transition:none!important}.access-page.is-arriving .access-card{opacity:0}.access-submit:hover:not(:disabled){transform:none}}
+@media print{.visitor-account{display:none!important}}

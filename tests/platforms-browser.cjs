@@ -6,7 +6,7 @@ const password=Object.fromEntries(fs.readFileSync('.dev.vars','utf8').split(/\r?
  const browser=await chromium.launch({executablePath:'C:/Program Files/Google/Chrome/Application/chrome.exe',headless:true});
  try{
   const context=await browser.newContext({viewport:{width:1440,height:1000},permissions:['clipboard-read','clipboard-write']}),page=await context.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));
-  await page.goto(root);await page.locator('#password').fill(password);await page.getByRole('button',{name:'进入工作空间 →'}).click();await page.locator('#grid .card').first().waitFor();
+  await page.goto(root);await page.locator('#password').fill(password);await page.getByRole('button',{name:'确认进入'}).click();await page.locator('#grid .card').first().waitFor();
   assert.equal(await page.locator('#grid .card').count(),109);await page.locator('[data-platform="wechat"]').click();assert.equal(await page.locator('#channelGrid .channel-card').count(),18);
   assert.equal(await page.locator('#navTrackedCount').textContent(),'0');assert.ok((await page.locator('#channelGrid').textContent()).includes('公众号微信号待核实'));
   await page.screenshot({path:path.join(output,'wechat-desktop.png')});

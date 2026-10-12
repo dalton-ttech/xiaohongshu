@@ -20,7 +20,7 @@ const password=Object.fromEntries(fs.readFileSync('.dev.vars','utf8').split(/\r?
   assert.equal((await context.request.get(root+report)).status(),401);
   await page.goto(root);
   await page.locator('#password').fill(password);
-  await page.getByRole('button',{name:'进入工作空间 →'}).click();
+  await page.getByRole('button',{name:'确认进入'}).click();
   await page.locator('#grid .card').first().waitFor();
   assert.equal(await page.locator('#grid .card').count(),109);
   const originalIds=await page.evaluate(()=>window.XHS_ACCOUNTS.map(r=>r.redId.toLowerCase()));

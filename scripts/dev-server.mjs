@@ -8,7 +8,7 @@ const root = path.resolve(fileURLToPath(new URL('../public/', import.meta.url)))
 const config = await fs.readFile(new URL('../.dev.vars', import.meta.url), 'utf8').catch(() => '');
 const env = Object.fromEntries(config.split(/\r?\n/).filter(line => /^[A-Z_]+=/.test(line)).map(line => { const i = line.indexOf('='); return [line.slice(0, i), line.slice(i + 1).trim()]; }));
 for (const key of ['ACCESS_PASSWORD', 'ACCESS_SESSION_SECRET']) if (process.env[key]) env[key] = process.env[key];
-const mime = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.css': 'text/css; charset=utf-8', '.json': 'application/json', '.jpg': 'image/jpeg', '.svg': 'image/svg+xml' };
+const mime = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.css': 'text/css; charset=utf-8', '.json': 'application/json', '.jpg': 'image/jpeg', '.png': 'image/png', '.svg': 'image/svg+xml', '.woff2': 'font/woff2' };
 const server = http.createServer(async (req, res) => {
   try {
     const chunks = []; let size = 0;
